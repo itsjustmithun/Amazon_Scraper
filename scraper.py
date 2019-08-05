@@ -34,21 +34,18 @@ def send_mail():
     try:
         server.login('email', 'password')
         subject = 'Price fell down!'
-        body = 
+        body = f"The price for this amazon product has come down \n\n Title - {title} \n\n Price - {price} \n\n Link - {URL}"
+        msg = f"subject: {subject}\n\n{body}"
 
-    msg = f"Subject: {subject}\n\n{body}"
-
-    server.sendmail(
-        'sender email',
-        'reciever email',
-        msg
-    )
-    print('Hey email has been sent!')
-
-    server.quit()
-
-check_price()
+        server.sendmail(
+            'sender email',
+            'reciever email',
+            msg
+        )
+        print('Hey email has been sent!')
+    except:
+        print("Some error occured!")
 
 while(True):
-    check_price()
+    get_price()
     time.sleep(60*60*60)
